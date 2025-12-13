@@ -1,0 +1,9 @@
+.parentContainer{
+    border: 1px solid red;
+    display: relative;
+}
+
+.text{
+    font-size: 10px;
+    display:block;
+}
