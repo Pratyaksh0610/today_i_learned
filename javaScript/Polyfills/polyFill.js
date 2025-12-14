@@ -18,6 +18,12 @@
 
 // console.log(myMapArray);
 
+
+
+
+
+
+
 // Array.filter polyFill
 
 // const arr = [2,4,5,13,20];
@@ -42,7 +48,12 @@
 
 // console.log(myFilterArray);
 
-//array reduce polyFill
+
+
+
+
+
+// array reduce polyFill
 
 // const arr = [1,2,3,40];
 
@@ -66,6 +77,11 @@
 // console.log(newArr);
 // console.log(myReduceArray);
 
+
+
+
+
+
 // this methods
 
 // function greet(place){
@@ -83,7 +99,14 @@
 
 // greet();
 
-//call polyfill
+
+
+
+
+
+
+
+// call polyfill
 // Function.prototype.myCall = function (context = {}, ...args) {
 //   if (typeof this !== "function") {
 //     throw new Error(this + "It's not callable");
@@ -104,7 +127,12 @@
 
 // greet.myCall(person,"place");
 
-//apply polyFill
+
+
+
+
+
+// apply polyFill
 // Function.prototype.myApply = function (context = {}, argsArray = []) {
 //   if (typeof this !== "function") {
 //     throw new Error(this + "It's not callable");
@@ -129,7 +157,14 @@
 
 // greet.myApply(person,["place"]);
 
-//bind polyFill
+
+
+
+
+
+
+
+// bind polyFill
 // Function.prototype.myBind = function(context={}, ...args){
 //     if(typeof this !== 'function'){
 //         throw new Error(this + " cannot be bound as it's not callable");
@@ -153,7 +188,13 @@
 // const pratyakshGreet = greet.myBind(person);
 // pratyakshGreet("Hisar");
 
-//memoize polyFill
+
+
+
+
+
+
+// memoize function
 
 // function myMemoize(fn,context){
 //     let res = {};
@@ -182,7 +223,14 @@
 // lessExpensiveFunction(100);
 // console.timeEnd("Second call");
 
-//Promise polyFill
+
+
+
+
+
+
+
+// Promise polyFill
 
 // function PromisePolyFill(executor){
 //     let onResolve,
@@ -269,7 +317,12 @@
 
 
 
-//Promise.all polyFill
+
+
+
+
+
+// Promise.all polyFill
 
 // Promise.allPolyfill = function(promises){
 //     return new Promise(function(resolve,reject){
@@ -292,7 +345,13 @@
 //     })
 // }
 
-//debounce polyfill
+
+
+
+
+
+
+// debounce polyfill
 
 // const myDebounce = function(cb,delay){
 //     let timer;
@@ -310,7 +369,12 @@
 // },500);
 
 
-//throttle Polyfill
+
+
+
+
+
+// throttle Polyfill
 
 // const myThrottle = function(cb,delay){
 //     let last = 0;
