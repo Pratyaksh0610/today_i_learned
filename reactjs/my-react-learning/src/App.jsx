@@ -5,6 +5,7 @@ import Calculator from "./component/useReducerExample/Calculator";
 import useFetch from "./hooks/useFetch";
 import withDarkMode from "./utils/withDarkMode";
 import CenteredDiv from "./component/CenteredDiv/CenteredDiv";
+import GridComponent from "./component/Grid/GridComponent";
 // import FlexBox from "./component/FlexBox/FlexBox";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
     <p>App</p>
+    <GridComponent/>
     {/* <FlexBox/> */}
     {/* <CenteredDiv/>1 */}
       {/* <div className="card"> */}
