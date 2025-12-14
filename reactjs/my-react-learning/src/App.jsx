@@ -4,6 +4,8 @@ import Brick from "./component/useEffectExample/Brick";
 import Calculator from "./component/useReducerExample/Calculator";
 import useFetch from "./hooks/useFetch";
 import withDarkMode from "./utils/withDarkMode";
+import CenteredDiv from "./component/CenteredDiv/CenteredDiv";
+// import FlexBox from "./component/FlexBox/FlexBox";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -21,7 +23,10 @@ function App() {
   // },[]);
   return (
     <>
-      <div className="card">
+    <p>App</p>
+    {/* <FlexBox/> */}
+    {/* <CenteredDiv/>1 */}
+      {/* <div className="card"> */}
         {/* {count % 2 === 0 && <Brick />} */}
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -32,8 +37,8 @@ function App() {
             return <li key = {post.id}>{post.title}</li>
           })}
         </ul>} */}
-        <DarkBrick/>
-      </div>
+        {/* <DarkBrick/> */}
+      {/* </div> */}
     </>
   );
 }
