@@ -1,0 +1,51 @@
+.parentContainer{
+    height: 80vh;
+    border: 1px solid red;
+    display:flex;
+    /* there is no justify-items in flexBox */
+    justify-content: center;
+    /* Ek line ho toh align-items */
+    /* align-items:center; */
+    /* Ek se jyada line ho toh align-content */
+    align-items: center;
+    flex-wrap:wrap;
+    gap:30px;
+    /* row-gap: 10px;
+    column-gap:55px; */
+    /* gap: 10px 55px; */
+}
+
+.item{
+    min-width: 40px;
+    min-height: 40px;
+    /* margin: 4px; */
+    background: violet;
+    /* default flex-grow:0 */
+    flex-grow:0;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    /* default order is 0, lower the order utna jldi woh aayega
+    order: 1; */
+}
+
+.item2{
+    min-width: 40px;
+    min-height: 40px;
+    /* margin: 4px; */
+    background: red;
+    /* default flex-grow:0 */
+    flex-grow:0;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    /* align-self brings it to the tops of its row, if the item is inside align-items -> then it will bring it to the top of page
+    align-content-> then it will bring it to top of the single row */
+    /* align-self: flex-start; */
+    /* default order is 0, lower the order utna jldi woh aayega
+    order: 1; */
+}
+
+.grow{
+    flex-grow:0;
+}
