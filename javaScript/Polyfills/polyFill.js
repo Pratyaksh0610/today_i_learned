@@ -18,12 +18,6 @@
 
 // console.log(myMapArray);
 
-
-
-
-
-
-
 // Array.filter polyFill
 
 // const arr = [2,4,5,13,20];
@@ -48,14 +42,9 @@
 
 // console.log(myFilterArray);
 
-
-
-
-
-
 // array reduce polyFill
 
-// const arr = [1,2,3,40];
+const arr = [1, 2, 3, 40];
 
 // Array.prototype.myReduce = function(cb,initialValue){
 //     let val = initialValue;
@@ -77,10 +66,24 @@
 // console.log(newArr);
 // console.log(myReduceArray);
 
+function greet(name) {
+  console.log(`Hello ${name}`);
+}
 
+const person = {
+  name: "Pratyaksh",
+};
 
-
-
+function myMemoize(cb) {
+  let res = {};
+  return function (...args) {
+    let inputString = JSON.stringify(args);
+    if (!res[inputString]) {
+      res[inputString] = cb(...args);
+    }
+    return res[inputString];
+  };
+}
 
 // this methods
 
@@ -99,20 +102,13 @@
 
 // greet();
 
-
-
-
-
-
-
-
 // call polyfill
 // Function.prototype.myCall = function (context = {}, ...args) {
 //   if (typeof this !== "function") {
 //     throw new Error(this + "It's not callable");
 //   }
 //   context.fn = this;
-//   context.fn(...args);
+//   return context.fn(...args);
 // };
 
 // const person = {
@@ -127,11 +123,6 @@
 
 // greet.myCall(person,"place");
 
-
-
-
-
-
 // apply polyFill
 // Function.prototype.myApply = function (context = {}, argsArray = []) {
 //   if (typeof this !== "function") {
@@ -142,7 +133,7 @@
 //     throw new Error(this + "It's not an array");
 //   }
 //   context.fn = this;
-//   context.fn(...argsArray);
+//   return context.fn(...argsArray);
 // };
 
 // const person = {
@@ -156,13 +147,6 @@
 // }
 
 // greet.myApply(person,["place"]);
-
-
-
-
-
-
-
 
 // bind polyFill
 // Function.prototype.myBind = function(context={}, ...args){
@@ -187,12 +171,6 @@
 
 // const pratyakshGreet = greet.myBind(person);
 // pratyakshGreet("Hisar");
-
-
-
-
-
-
 
 // memoize function
 
@@ -222,13 +200,6 @@
 // console.time("Second call");
 // lessExpensiveFunction(100);
 // console.timeEnd("Second call");
-
-
-
-
-
-
-
 
 // Promise polyFill
 
@@ -315,13 +286,6 @@
 
 // resolve executes callback later
 
-
-
-
-
-
-
-
 // Promise.all polyFill
 
 // Promise.allPolyfill = function(promises){
@@ -345,12 +309,6 @@
 //     })
 // }
 
-
-
-
-
-
-
 // debounce polyfill
 
 // const myDebounce = function(cb,delay){
@@ -368,17 +326,11 @@
 //     console.log(12);
 // },500);
 
-
-
-
-
-
-
 // throttle Polyfill
 
 // const myThrottle = function(cb,delay){
 //     let last = 0;
-    
+
 //     return function(...args){
 //         let now = new Date().getTime();
 //         if(now-last>delay){{
@@ -387,4 +339,250 @@
 //         }}
 //         return;
 //     }
+// }
+
+// function PromisePolyFill(executor) {
+//   let val,
+//     onResolve,
+//     onReject,
+//     onFinal,
+//     isFulfilled = false,
+//     isCalled = false;
+//   function resolve(value) {
+//     val = value;
+//     isFulfilled = true;
+//     if (typeof onResolve === "function") {
+//       onResolve(val);
+//       isCalled = true;
+//       typeof onFinal === 'function' && onFinal();
+//     }
+//     return val;
+//   }
+//   function reject(value) {
+//     val = value;
+//     isFulfilled = true;
+//     if (typeof onReject === "function") {
+//       onReject(val);
+//       isCalled = true;
+//       typeof onFinal === 'function' && onFinal();
+//     }
+//     return val;
+//   }
+//   this.then = function (cb) {
+//     onResolve = cb;
+//     if (isFulfilled && !isCalled) {
+//       isCalled = true;
+//       cb(val);
+//       typeof onFinal === 'function' && onFinal();
+//     }
+//     return this;
+//   };
+//   this.catch = function (cb) {
+//     onReject = cb;
+//     if (isFulfilled && !isCalled) {
+//       isCalled = true;
+//       cb(val);
+//       typeof onFinal === 'function' && onFinal();
+//     }
+//     return this;
+//   };
+//   this.finally = function (cb) {
+//       onFinal = cb;
+//     if (isCalled) {
+//       if (isCalled) {
+//         onFinal();
+//       }
+//     }
+//     return this;
+//   };
+//   try {
+//     executor(resolve, reject);
+//   } catch (err) {
+//     reject(err);
+//   }
+// }
+
+// const p = new PromisePolyFill(function (resolve, reject) {
+//     // setTimeout(function(){
+//   resolve(2);
+//     // },2000);
+// });
+
+// p.then((val) => console.log(val * 2))
+//   .catch((err) => console.log(88))
+//   .finally(() => console.log("DONE"));
+
+// // const obj = {
+// //     name : "PRATYAKSH",
+// //     greet : function(){
+// //         console.log("HELLO   "+this.name);
+// //     }
+// // }
+// // obj.greet();
+
+const p1 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    reject("BAAD MEI AANA");
+  }, 2000);
+});
+const p2 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+   reject("BAAD MEI AANA");
+  }, 1000);
+});
+const p3 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    reject("BAAD MEI AANA");
+  }, 0);
+});
+const p4 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    // resolve(2);
+    reject("BAAD MEI AANA");
+  }, 3000);
+});
+const p5 = new Promise(function (resolve, reject) {
+  setTimeout(function () {
+    // resolve(8);
+    reject("BAAD MEI AANA");
+  }, 1000);
+});
+
+Promise.allPromises = function (promises) {
+  return new Promise(function (resolve, reject) {
+    let res = [];
+    if (promises.length === 0) {
+      resolve(res);
+      return;
+    }
+    let pendingPromises = promises.length;
+    promises.forEach((promise, idx) => {
+      Promise.resolve(promise)
+        .then((response) => {
+          pendingPromises--;
+          res[idx] = response;
+          if (pendingPromises === 0) {
+            resolve(res);
+            return;
+          }
+        })
+        .catch((err) => reject(err));
+    });
+  });
+};
+
+Promise.allSettledPromises = function (promises) {
+  return new Promise(function (resolve, reject) {
+    let res = [];
+    if (promises.length === 0) {
+      resolve(res);
+      return;
+    }
+    let pendingPromises = promises.length;
+    promises.forEach(function (promise, idx) {
+      Promise.resolve(promise)
+        .then(function (response) {
+          res.push({ status: "fulfilled", value: response });
+          pendingPromises--;
+          if (pendingPromises === 0) {
+            resolve(res);
+            return;
+          }
+        })
+        .catch(function (err) {
+          res.push({ status: "failed", err: err });
+          pendingPromises--;
+          if (pendingPromises === 0) {
+            resolve(res);
+            return;
+          }
+        });
+    });
+  });
+};
+
+Promise.racePromise = function (promises) {
+  return new Promise(function (resolve, reject) {
+    if (promises.length === 0) {
+      resolve(res);
+      return;
+    }
+    promises.forEach(function (promise, idx) {
+      Promise.resolve(promise)
+        .then(function (response) {
+          resolve(response);
+          return;
+        })
+        .catch(function (err) {
+            reject(err);
+            return;
+        });
+    });
+  });
+};
+
+Promise.anyPromise = function (promises) {
+  return new Promise(function (resolve, reject) {
+    let failedArray = [];
+    if (promises.length === 0) {
+      resolve(res);
+      return;
+    }
+    let pendingPromises = promises.length;
+    promises.forEach(function (promise, idx) {
+      Promise.resolve(promise)
+        .then(function (response) {
+          return resolve(response);
+        })
+        .catch(function (err) {
+            failedArray[idx]=err;
+            pendingPromises--;
+            if(pendingPromises===0){
+                reject(new AggregateError(failedArray,"All errors are in array"));
+                return;
+            }
+          return;
+        });
+    });
+  });
+};
+
+async function getPromises() {
+  //    const promiseResponse1 = await Promise.allPromises([p1,p2,p3,p4,p5]);
+  //   const promiseResponse2 = await Promise.allSettledPromises([
+  //     p1,
+  //     p2,
+  //     p3,
+  //     p4,
+  //     p5,
+  //   ]);
+//   const promiseResponse3 = await Promise.racePromise([p1, p2, p3, p4, p5]);
+    const promiseResponse4 = await Promise.anyPromise([p1, p2, p3, p4, p5]);
+  //    console.log(promiseResponse1);
+  //   console.log(promiseResponse2);
+//   console.log("RACE",promiseResponse3);
+    console.log("ANY",promiseResponse4);
+}
+
+getPromises();
+
+// Promise.allPolyfill = function(promises){
+//     return new Promise(function(resolve,reject){
+//         let results = [];
+//         if(!promises.length){
+//             resolve(results);
+//             return;
+//         }
+//         let pendingPromise = promises.length;
+//         promises.forEach(function(promise,idx){
+//             Promise.resolve(promise).then((res)=>{
+//                 results[idx]=res;
+//                 pendingPromise--;
+//                 if(pendingPromise===0){
+//                     resolve(results);
+//                     return;
+//                 }
+//             }).catch(()=>reject());
+//         })
+//     })
 // }
