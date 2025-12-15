@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import Brick from "./component/useEffectExample/Brick";
 import Calculator from "./component/useReducerExample/Calculator";
@@ -7,7 +7,10 @@ import withDarkMode from "./utils/withDarkMode";
 import CenteredDiv from "./component/CenteredDiv/CenteredDiv";
 import GridComponent from "./component/Grid/GridComponent";
 import GraphBFS from "./component/GraphBFS/GraphBFS";
-// import FlexBox from "./component/FlexBox/FlexBox";
+import { NameContext } from "./context/name-context";
+import PropComponent from "./component/PropComponent/PropComponent";
+import FlexBox from "./component/FlexBox/FlexBox";
+import Calculator2 from "./component/useReducerExample/Calculator2";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -19,6 +22,8 @@ function App() {
   // const {data,loading,error,fn} = useFetch(fetchPosts);
 
   const DarkBrick = withDarkMode(Brick);
+  // const {name,toggleName} = useContext(NameContext);
+  // console.log("name is ",name);
 
   // useEffect(()=>{
   //   fn();
@@ -26,18 +31,20 @@ function App() {
   return (
     <>
     <p>App</p>
-    <GraphBFS/>
+    {/* <GraphBFS/> */}
+    {/* <PropComponent name="Pratyaksh" age={23} city="Hisar" state="Haryana" /> */}
     {/* <GridComponent/> */}
     {/* <FlexBox/> */}
-    {/* <CenteredDiv/>1 */}
+    {/* <CenteredDiv/> */}
       {/* <div className="card"> */}
         {/* {count % 2 === 0 && <Brick />} */}
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
         {/* <Calculator/> */}
+        {/* <Calculator2/> */}
         {/* {!loading && <ul>
-          {data?.map((post)=>{
+          {data && data.map((post)=>{
             return <li key = {post.id}>{post.title}</li>
           })}
         </ul>} */}
