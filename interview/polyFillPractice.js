@@ -99,8 +99,8 @@
 
 const transactions = [
   { customerId: "C1", category: "Electronics", amount: 200 },
-  { customerId: "C1", category: "Clothing", amount: 80 },
-  { customerId: "C1", category: "Electronics", amount: 150 },
+  { customerId: "C1", category: "Clothing", amount: 800 },
+  { customerId: "C1", category: "Electronics", amount: 1500 },
   { customerId: "C2", category: "Clothing", amount: 120 },
   { customerId: "C2", category: "Groceries", amount: 60 },
   { customerId: "C2", category: "Clothing", amount: 50 },
@@ -119,31 +119,35 @@ const resultantObject = transactions.reduce(function (acc, curr) {
           count: 1,
         },
       },
-      [MOST_SPENT_CATEGORY]: undefined,
+      [MOST_SPENT_CATEGORY]: curr.category,
     };
   }
-  if (Object.keys(acc[curr.customerId][CATEGORIES]).includes(curr.category)) {
-    acc[curr.customerId][CATEGORIES][curr.category].totalAmount += curr.amount;
-    acc[curr.customerId][CATEGORIES][curr.category].count += 1;
+  let categoriesPath = acc[curr.customerId][CATEGORIES];
+  if (Object.keys(categoriesPath).includes(curr.category)) {
+    categoriesPath[curr.category].totalAmount += curr.amount;
+    categoriesPath[curr.category].count += 1;
   } else {
-    acc[curr.customerId][CATEGORIES] = {
-      //   [CATEGORIES]: {
+    categoriesPath = {
+      ...categoriesPath,
       [curr.category]: {
         totalAmount: curr.amount,
         count: 1,
       },
-      //   },
     };
   }
-  const customerMostSpentCategory = acc[curr.customerId][MOST_SPENT_CATEGORY];
-  console.log("<<<<customerMostSpentCategory", customerMostSpentCategory);
+  console.log("before:", acc[curr.customerId][MOST_SPENT_CATEGORY]);
+
+  // customerMostSpentCategory = curr.category;
+
+  let customerMostSpentCategory = acc[curr.customerId][MOST_SPENT_CATEGORY];
+  
   if (
-    customerMostSpentCategory == undefined ||
-    acc[curr.customerId][CATEGORIES][customerMostSpentCategory].totalAmount <
-      acc[curr.customerId][CATEGORIES][curr.category].totalAmount
+    categoriesPath[customerMostSpentCategory].totalAmount <
+    categoriesPath[curr.category].totalAmount
   ) {
-    acc[curr.customerId][MOST_SPENT_CATEGORY] = curr.category;
+    customerMostSpentCategory = curr.category;
   }
+  console.log("after:", acc[curr.customerId][MOST_SPENT_CATEGORY]);
   return acc;
 }, {});
 
