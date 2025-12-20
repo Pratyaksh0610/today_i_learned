@@ -97,58 +97,83 @@
 //   }
 // }
 
-const transactions = [
-  { customerId: "C1", category: "Electronics", amount: 200 },
-  { customerId: "C1", category: "Clothing", amount: 800 },
-  { customerId: "C1", category: "Electronics", amount: 1500 },
-  { customerId: "C2", category: "Clothing", amount: 120 },
-  { customerId: "C2", category: "Groceries", amount: 60 },
-  { customerId: "C2", category: "Clothing", amount: 50 },
-  { customerId: "C3", category: "Groceries", amount: 200 },
-];
+// const transactions = [
+//   { customerId: "C1", category: "Electronics", amount: 200 },
+//   { customerId: "C1", category: "Clothing", amount: 800 },
+//   { customerId: "C1", category: "Electronics", amount: 150 },
+//   { customerId: "C2", category: "Clothing", amount: 120 },
+//   { customerId: "C2", category: "Groceries", amount: 60 },
+//   { customerId: "C2", category: "Clothing", amount: 50 },
+//   { customerId: "C3", category: "Groceries", amount: 200 },
+// ];
 
-const CATEGORIES = "categories";
-const MOST_SPENT_CATEGORY = "mostSpentCategory";
+// const CATEGORIES = "categories";
+// const MOST_SPENT_CATEGORY = "mostSpentCategory";
 
-const resultantObject = transactions.reduce(function (acc, curr) {
-  if (!Object.keys(acc).includes(curr.customerId)) {
-    acc[curr.customerId] = {
-      [CATEGORIES]: {
-        [curr.category]: {
-          totalAmount: curr.amount,
-          count: 1,
-        },
-      },
-      [MOST_SPENT_CATEGORY]: curr.category,
-    };
-  }
-  let categoriesPath = acc[curr.customerId][CATEGORIES];
-  if (Object.keys(categoriesPath).includes(curr.category)) {
-    categoriesPath[curr.category].totalAmount += curr.amount;
-    categoriesPath[curr.category].count += 1;
-  } else {
-    categoriesPath = {
-      ...categoriesPath,
-      [curr.category]: {
-        totalAmount: curr.amount,
-        count: 1,
-      },
-    };
-  }
-  console.log("before:", acc[curr.customerId][MOST_SPENT_CATEGORY]);
-
-  // customerMostSpentCategory = curr.category;
-
-  let customerMostSpentCategory = acc[curr.customerId][MOST_SPENT_CATEGORY];
+// const resultantObject = transactions.reduce(function (acc, curr) {
+//   if (!Object.keys(acc).includes(curr.customerId)) {
+//     acc[curr.customerId] = {
+//       [CATEGORIES]: {
+//         [curr.category]: {
+//           totalAmount: curr.amount,
+//           count: 1,
+//         },
+//       },
+//       [MOST_SPENT_CATEGORY]: curr.category,
+//     };
+//   }
+//   let categoriesPath = acc[curr.customerId][CATEGORIES];
+//   if (Object.keys(categoriesPath).includes(curr.category)) {
+//     categoriesPath[curr.category].totalAmount += curr.amount;
+//     categoriesPath[curr.category].count += 1;
+//   } else {
+//     categoriesPath[curr.category] = {
+//       totalAmount: curr.amount,
+//       count:1
+//     }
+//   }
+//   let customerMostSpentCategory = acc[curr.customerId][MOST_SPENT_CATEGORY];
   
-  if (
-    categoriesPath[customerMostSpentCategory].totalAmount <
-    categoriesPath[curr.category].totalAmount
-  ) {
-    customerMostSpentCategory = curr.category;
-  }
-  console.log("after:", acc[curr.customerId][MOST_SPENT_CATEGORY]);
-  return acc;
-}, {});
+//   if (
+//     categoriesPath[customerMostSpentCategory].totalAmount <
+//     categoriesPath[curr.category].totalAmount
+//   ) {
+//     acc[curr.customerId][MOST_SPENT_CATEGORY] = curr.category;
+//   }
+//   return acc;
+// }, {});
 
-console.log(resultantObject);
+// console.log(resultantObject);
+
+// const obj = {
+//   name:'p',
+//   age:2,
+//   location: {
+//     state: 'haryana',
+//     city: 'hisar',
+//     testing:{
+//       qaName: "abcdef"
+//     }
+//   }
+// }
+
+// let objReference = obj['location'];
+// console.log(obj);
+
+// let flattenObject2 = flattenObject(obj);
+
+// function flattenObject(obj,parentPath="",res = {}){
+//   Object.keys(obj).forEach(function(objField){
+//     const path = parentPath ? `${parentPath}.${objField}`: objField;
+//     const value = obj[objField];
+
+//     if(typeof value === 'object'){
+//       flattenObject(value,path,res)
+//     }
+//     else{
+//       res[path]=value;
+//     }
+//   })
+//   return res;
+// }
+// console.log(flattenObject2);
